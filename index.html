@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src = "https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script src = "./components/Rotation.js"></script>
+        <script src = "./components/coin.js"></script>
+        <script src = "./components/collider.js"></script>
+    </head>
+    
+    <body>
+        <a-scene>
+            <a-entity id = "look" look-controls camera position = "0 55 25"></a-entity>
+
+            <a-assets timeout = "10000">
+                <a-asset-item
+                    id = "terrainMap"
+                    src = "./assets/models/terrain/scene.gltf"
+                ></a-asset-item>
+
+                <a-assets-item
+                    id = "scuba_diver"
+                    src = "./assets/models/scuba_diver/scene.gltf"
+                ></a-assets-item>
+            </a-assets>
+
+            <a-entity
+                id = "terrain"
+                gltf-model = "#terrainMap"
+                position = "0 0 0"
+                scale = "50 50 50"
+                animation="property: position; to: 0 0 1000; easing: linear; loop: true; dur: 150000"
+                terrain-rotation-reader
+                coin
+                fish-swim
+            ></a-entity>
+
+            <a-entity 
+                id = "scuba_diver" 
+                gltf-model = "#scuba_diver" 
+                position = "0 50 15" 
+                scale = "10 10 10" 
+                rotation = "0 90 0"
+                diver-rotation-reader
+                game-play
+                dynamic-body = "mass: 0"
+            ></a-entity>
+
+        </a-scene>
+    </body>
+
+</html>
